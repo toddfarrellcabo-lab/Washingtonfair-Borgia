@@ -616,3 +616,186 @@ footer{text-align:center;background:var(--navy);color:white;padding:16px;margin-
 .posted-trade-match{
   border-width:2px;
 }
+/* =====================================================
+   v2.11 Mobile Compact Search Results
+   ===================================================== */
+
+@media(max-width:700px){
+
+  .container{
+    padding:0 8px;
+    margin:10px auto;
+  }
+
+  .card{
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:12px;
+  }
+
+  .find-card h1{
+    font-size:1.35rem;
+  }
+
+  .find-card .muted{
+    font-size:.92rem;
+    margin-bottom:8px;
+  }
+
+  .search-row{
+    gap:8px;
+  }
+
+  .search-row input{
+    padding:9px 10px;
+    font-size:16px;
+  }
+
+  .search-row .btn{
+    padding:9px 10px;
+  }
+
+  .status{
+    margin:8px 0;
+    font-size:.92rem;
+  }
+
+  .assignment-list{
+    gap:9px;
+  }
+
+  .assignment-card{
+    display:block;
+    padding:10px;
+    border-radius:12px;
+  }
+
+  .assignment-head{
+    display:grid;
+    grid-template-columns:50px 1fr;
+    gap:9px;
+    align-items:start;
+  }
+
+  .position-icon{
+    width:44px;
+    height:44px;
+    margin-top:2px;
+  }
+
+  .badge{
+    font-size:.74rem;
+    padding:3px 7px;
+  }
+
+  .people{
+    font-size:1.08rem;
+    line-height:1.12;
+    margin:4px 0 6px;
+  }
+
+  .detail-grid{
+    display:block;
+    margin:0;
+    font-size:.9rem;
+    line-height:1.28;
+  }
+
+  .detail-grid > div{
+    margin:1px 0;
+  }
+
+  .notes{
+    margin-top:6px;
+    padding:7px;
+    font-size:.86rem;
+  }
+
+  .actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    margin-top:9px;
+  }
+
+  .actions .btn{
+    font-size:.82rem;
+    padding:8px 7px;
+    min-height:36px;
+  }
+
+  .side-box{
+    margin-top:9px;
+    padding-top:9px;
+  }
+
+  .side-box .label{
+    font-size:.88rem;
+  }
+
+  .coach-select{
+    padding:8px;
+    font-size:.9rem;
+    margin:5px 0 7px;
+  }
+
+  .point-coach{
+    padding:8px;
+    font-size:.86rem;
+  }
+
+  .point-coach .label{
+    display:inline;
+    margin-right:5px;
+  }
+
+  .point-coach .pc-name{
+    display:inline;
+  }
+
+  .point-coach .pc-small{
+    display:none;
+  }
+}
+
+/* =====================================================
+   Extra Tight Layout When Keyboard Is Open
+   ===================================================== */
+
+@media(max-width:700px) and (max-height:750px){
+
+  .hero-image{
+    display:none;
+  }
+
+  .top-nav{
+    padding:6px;
+  }
+
+  .top-nav a,
+  .top-nav button{
+    padding:6px 8px;
+    font-size:.78rem;
+  }
+
+  .find-card{
+    padding-top:10px;
+  }
+
+  .assignment-card{
+    padding:8px;
+  }
+
+  .people{
+    font-size:1rem;
+  }
+
+  .detail-grid{
+    font-size:.84rem;
+  }
+
+  .actions .btn{
+    font-size:.78rem;
+    padding:7px 5px;
+  }
+}
