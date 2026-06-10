@@ -556,3 +556,63 @@ footer{text-align:center;background:var(--navy);color:white;padding:16px;margin-
   border:1px solid #efd37a;
   font-size:.9rem;
 }
+
+
+/* v2.10 trade modal and pass splitter refinements */
+.trade-modal-actions{
+  margin-top:12px;
+  margin-bottom:12px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--line);
+}
+
+.possible-matches{
+  margin-top:10px;
+}
+
+/* Make Pass Splitter feel like its own separate tool at the end */
+.pass-card{
+  background:
+    linear-gradient(180deg, #fffdf4 0%, #fff6d6 100%);
+  border:2px solid var(--gold);
+  border-top:8px solid var(--gold);
+  box-shadow:0 6px 20px rgba(120, 89, 0, .12);
+  margin-top:28px;
+}
+
+.pass-card h2{
+  color:var(--navy);
+}
+
+.pass-card .section-title{
+  padding-bottom:8px;
+  border-bottom:2px solid rgba(8,43,111,.12);
+}
+
+.pass-note{
+  background:var(--navy);
+  color:white;
+  border-left:8px solid var(--gold);
+}
+
+.pass-note strong,
+.pass-note a{
+  color:white;
+}
+
+.pass-form{
+  background:white;
+  border:1px solid #ecd37b;
+  border-radius:14px;
+  padding:12px;
+}
+
+.pass-board .trade-item,
+.pass-matches .match-box{
+  border-color:#e2c15a;
+}
+
+/* Trade match list no longer exposes every slot by default */
+.posted-trade-match{
+  border-width:2px;
+}
