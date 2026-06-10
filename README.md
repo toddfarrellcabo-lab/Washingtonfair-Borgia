@@ -71,3 +71,10 @@ For shared confirmations/trades/emails, connect it to Microsoft Lists + Power Au
   - Preference only
 - Matching view now separates profiles already Looking to Trade from other workable slots.
 - Matching posted trade profiles include an Email Trade Offer button.
+
+
+## v2.10 notes
+- Trade modal buttons now appear immediately under the filter controls.
+- Possible trade matches only show families who have already posted a Looking to Trade request.
+- Other schedule slots are no longer exposed as trade match suggestions.
+- Pass Splitter moved to the end and styled as a distinct section.
