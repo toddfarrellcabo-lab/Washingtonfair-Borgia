@@ -62,3 +62,12 @@ For shared confirmations/trades/emails, connect it to Microsoft Lists + Power Au
 - Pass Splitter no longer requires remembering a slot number.
 - Users can search by name, email, phone, or slot number.
 - Selecting a result fills the hidden slot value and shows pass matches.
+
+
+## v2.9 notes
+- Request Trade button changed to Looking to Trade.
+- Replaced confusing current-shift checkbox with Reason for Trade Request:
+  - Schedule conflict
+  - Preference only
+- Matching view now separates profiles already Looking to Trade from other workable slots.
+- Matching posted trade profiles include an Email Trade Offer button.

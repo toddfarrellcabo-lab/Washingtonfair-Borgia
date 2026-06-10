@@ -506,90 +506,53 @@ footer{text-align:center;background:var(--navy);color:white;padding:16px;margin-
   font-size:.9rem;
   padding:6px 0;
 }
-/* =====================================================
-   Mobile Stability / Anti-Bounce Fixes
-   ===================================================== */
 
-html{
-  width:100%;
-  overflow-x:hidden;
-  -webkit-text-size-adjust:100%;
+
+/* v2.9 trade reason + posted trade matches */
+.trade-reason{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px 12px;
+  margin:12px 0;
+  background:#f8fafc;
 }
 
-body{
-  width:100%;
-  max-width:100%;
-  overflow-x:hidden;
-  min-height:100svh;
-  overscroll-behavior-y:none;
+.trade-reason legend{
+  font-weight:900;
+  color:var(--navy);
 }
 
-/* Prevent random horizontal movement */
-*{
-  box-sizing:border-box;
-}
-
-/* Hero image stays proportional */
-.hero-image{
-  overflow:hidden;
-}
-
-.hero-image img{
+.trade-reason label{
   display:block;
-  width:min(100%,1600px);
-  height:auto !important;
-  max-width:100%;
-  object-fit:contain !important;
+  margin:7px 0;
+  font-weight:800;
 }
 
-/* Mobile browsers hate sticky headers */
-.top-nav,
-nav,
-.site-nav{
-  position:relative !important;
-  top:auto !important;
+.trade-reason input{
+  width:auto;
+  margin-right:7px;
 }
 
-/* Modal scrolling improvements */
-.trade-modal-overlay{
-  overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch;
+.match-section{
+  margin-top:14px;
 }
 
-.trade-modal{
-  max-width:100%;
+.match-section h4{
+  margin:8px 0;
+  color:var(--navy);
+  font-size:1rem;
 }
 
-/* Prevent cards from causing horizontal scroll */
-.card,
-.assignment-card,
-.trade-item,
-.match-box,
-.point-coach-feature,
-.pass-card{
-  max-width:100%;
-  overflow-wrap:break-word;
+.posted-trade-match{
+  border-color:var(--gold);
+  background:#fff9e3;
 }
 
-/* Long emails/links */
-a{
-  overflow-wrap:anywhere;
-}
-
-/* Mobile viewport fixes */
-@supports(height:100dvh){
-  body{
-    min-height:100dvh;
-  }
-}
-
-/* Smooth anchor jumps */
-html{
-  scroll-behavior:smooth;
-}
-
-/* Prevent iOS rubber-band effect */
-body,
-.trade-modal-overlay{
-  overscroll-behavior-y:none;
+.posted-note{
+  margin:8px 0;
+  padding:8px;
+  border-radius:10px;
+  background:white;
+  border:1px solid #efd37a;
+  font-size:.9rem;
 }

@@ -249,7 +249,7 @@ function assignmentCard(a){
         <button class="btn btn-navy" data-action="confirm">Confirm Assignment</button>
         <button class="btn btn-gold" data-action="calendar">Add To Calendar</button>
         <button class="btn" data-action="email">Email Confirmation</button>
-        <button class="btn" data-action="trade">Request Trade</button>
+        <button class="btn" data-action="trade">Looking to Trade</button>
       </div>
     </div>
     <div class="side-box">
@@ -374,10 +374,17 @@ function showTradeModal(a){
         ${days.map(day => tradeDayRow(day)).join("")}
       </div>
 
-      <label class="checkbox-line">
-        <input type="checkbox" id="canStillWork" checked>
-        <span>My current shift still works if needed.</span>
-      </label>
+      <fieldset class="trade-reason">
+        <legend>Reason for Trade Request</legend>
+        <label>
+          <input type="radio" name="tradeReason" value="conflict" checked>
+          <span>Schedule conflict — I need a different shift</span>
+        </label>
+        <label>
+          <input type="radio" name="tradeReason" value="preference">
+          <span>Preference only — I'd like a different shift if available</span>
+        </label>
+      </fieldset>
 
       <label class="label" for="tradeNote">Notes</label>
       <textarea id="tradeNote" placeholder="Example: I can work Saturday afternoon or Sunday morning."></textarea>
@@ -440,7 +447,7 @@ function showTradeModal(a){
       note,
       mode,
       dayTimes:data,
-      canStillWork: overlay.querySelector("#canStillWork").checked,
+      reason: getTradeReason(),
       possibleMatches: matches,
       createdAt:new Date().toISOString()
     };
@@ -484,6 +491,17 @@ function getTradeMode(){
   return checked ? checked.value : "available";
 }
 
+function getTradeReason(){
+  const checked = document.querySelector("input[name='tradeReason']:checked");
+  return checked ? checked.value : "conflict";
+}
+
+function formatTradeReason(reason){
+  return reason === "preference"
+    ? "Preference only — would like a different shift if available"
+    : "Schedule conflict — needs a different shift";
+}
+
 function getFairDays(){
   const order = ["Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday"];
   const found = [...new Set(assignments.map(a => dayNameFromDate(a.date)).filter(Boolean))];
@@ -523,6 +541,8 @@ function renderPossibleMatches(current, forceOpen=false){
   const mode = getTradeMode();
   const data = collectTradeDayData();
   const matches = getPossibleMatches(current, data, mode);
+  const postedMatches = matches.filter(m => state.trades && state.trades[m.slot]);
+  const openMatches = matches.filter(m => !(state.trades && state.trades[m.slot]));
 
   if (!forceOpen && Object.keys(data).length === 0){
     box.innerHTML = `<p class="muted">Select days/times to preview possible trade slots.</p>`;
@@ -536,16 +556,79 @@ function renderPossibleMatches(current, forceOpen=false){
 
   box.innerHTML = `
     <h3>Possible Trade Slots <span class="match-note">Showing all matches based on your choices</span></h3>
-    <div class="match-list">
-      ${matches.map(m => `
-        <div class="match-box">
-          <strong>Slot ${escapeHtml(m.slot)} • ${escapeHtml(displayPosition(m.position))}</strong><br>
-          ${escapeHtml(m.familyName)}<br>
-          ${escapeHtml(m.date)} • ${escapeHtml(m.time || "Time not listed")}
+
+    ${postedMatches.length ? `
+      <div class="match-section">
+        <h4>Already Looking to Trade</h4>
+        <div class="match-list">
+          ${postedMatches.map(m => tradeMatchCard(current, m, true)).join("")}
         </div>
-      `).join("")}
+      </div>
+    ` : `
+      <div class="match-box">
+        <strong>No posted trade requests match yet.</strong><br>
+        <span class="muted">You can still post your request so others can find you.</span>
+      </div>
+    `}
+
+    ${openMatches.length ? `
+      <div class="match-section">
+        <h4>Other Workable Slots</h4>
+        <div class="match-list">
+          ${openMatches.map(m => tradeMatchCard(current, m, false)).join("")}
+        </div>
+      </div>
+    ` : ""}
+  `;
+
+  box.querySelectorAll("[data-email-trade]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const other = assignments.find(a => String(a.slot) === String(btn.dataset.emailTrade));
+      if (other) emailTradeOffer(current, other);
+    });
+  });
+}
+
+function tradeMatchCard(current, m, hasRequest){
+  const t = state.trades && state.trades[m.slot];
+  return `
+    <div class="match-box ${hasRequest ? "posted-trade-match" : ""}">
+      <strong>Slot ${escapeHtml(m.slot)} • ${escapeHtml(displayPosition(m.position))}</strong><br>
+      ${escapeHtml(m.familyName)}<br>
+      ${escapeHtml(m.date)} • ${escapeHtml(m.time || "Time not listed")}
+      ${hasRequest ? `
+        <div class="posted-note">
+          <strong>They are looking to trade.</strong><br>
+          ${t?.note ? escapeHtml(t.note) : "No note entered."}
+        </div>
+        <button class="btn btn-gold" type="button" data-email-trade="${escapeAttr(m.slot)}">Email Trade Offer</button>
+      ` : ""}
     </div>
   `;
+}
+
+function emailTradeOffer(current, other){
+  const to = [other.email1, other.email2].filter(Boolean).join(",");
+  const subject = `Borgia Fair Trade Offer • Slot ${current.slot} and Slot ${other.slot}`;
+  const body = [
+    "Hi,",
+    "",
+    "I saw your Looking to Trade request on the Borgia Fair Volunteer Portal.",
+    "",
+    "I may be able to trade shifts if this works for you.",
+    "",
+    "My current shift:",
+    `${current.familyName} — Slot ${current.slot} — ${displayPosition(current.position)} — ${current.date} — ${current.time}`,
+    "",
+    "Your current shift:",
+    `${other.familyName} — Slot ${other.slot} — ${displayPosition(other.position)} — ${other.date} — ${other.time}`,
+    "",
+    "If this works, we should confirm with the appropriate coach/Point Coach before assuming the trade is approved.",
+    "",
+    "Thanks!"
+  ].join("\n");
+
+  location.href = mailtoUrl(to, subject, body);
 }
 
 function getPossibleMatches(current, dayTimes, mode="available"){
@@ -612,7 +695,7 @@ function renderTrades(){
       ${escapeHtml(a.date)} • ${escapeHtml(a.time || "Time not listed")}<br>
       <div class="notes">
         <strong>Preference:</strong> ${escapeHtml(formatTradePreference(t.mode || "available", t.dayTimes || t.unavailable))}<br>
-        <strong>Can still work current shift:</strong> ${t.canStillWork ? "Yes" : "No"}<br>
+        <strong>Reason:</strong> ${escapeHtml(formatTradeReason(t.reason))}<br>
         ${matchSlots ? `<strong>Possible slots:</strong> ${escapeHtml(matchSlots)}<br>` : ""}
         <strong>Notes:</strong> ${escapeHtml(t.note || "No note entered.")}
       </div>
@@ -639,7 +722,7 @@ function offerTrade(target, trade){
     "Requested Trade:",
     `${target.familyName} — Slot ${target.slot} — ${displayPosition(target.position)} — ${target.date} — ${target.time}`,
     `Preference: ${formatTradePreference(trade.mode || "available", trade.dayTimes || trade.unavailable)}`,
-    `Can still work current shift: ${trade.canStillWork ? "Yes" : "No"}`,
+    `Reason: ${formatTradeReason(trade.reason)}`,
     `Trade note: ${trade.note || ""}`,
     "",
     "Offered Shift:",
