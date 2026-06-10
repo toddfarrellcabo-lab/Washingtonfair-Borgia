@@ -389,13 +389,13 @@ function showTradeModal(a){
       <label class="label" for="tradeNote">Notes</label>
       <textarea id="tradeNote" placeholder="Example: I can work Saturday afternoon or Sunday morning."></textarea>
 
-      <div id="possibleMatches" class="possible-matches"></div>
-
-      <div class="actions">
+      <div class="actions trade-modal-actions">
         <button class="btn btn-gold" type="button" data-show-matches>Show Possible Trade Slots</button>
         <button class="btn btn-navy" type="button" data-post-trade>Post Trade Request</button>
         <button class="btn" type="button" data-close-trade>Cancel</button>
       </div>
+
+      <div id="possibleMatches" class="possible-matches"></div>
     </div>
   `;
 
@@ -540,45 +540,32 @@ function renderPossibleMatches(current, forceOpen=false){
 
   const mode = getTradeMode();
   const data = collectTradeDayData();
-  const matches = getPossibleMatches(current, data, mode);
-  const postedMatches = matches.filter(m => state.trades && state.trades[m.slot]);
-  const openMatches = matches.filter(m => !(state.trades && state.trades[m.slot]));
+
+  const matches = getPossibleMatches(current, data, mode)
+    .filter(m => state.trades && state.trades[m.slot]);
 
   if (!forceOpen && Object.keys(data).length === 0){
-    box.innerHTML = `<p class="muted">Select days/times to preview possible trade slots.</p>`;
+    box.innerHTML = `<p class="muted">Select days/times to preview posted Looking to Trade matches.</p>`;
     return;
   }
 
   if (!matches.length){
-    box.innerHTML = `<div class="match-box"><strong>No obvious matches found.</strong><br><span class="muted">You can still post the trade request with a note.</span></div>`;
+    box.innerHTML = `
+      <div class="match-box">
+        <strong>No posted trade requests match your filters yet.</strong><br>
+        <span class="muted">Post your request so other families can find and email you.</span>
+      </div>
+    `;
     return;
   }
 
   box.innerHTML = `
-    <h3>Possible Trade Slots <span class="match-note">Showing all matches based on your choices</span></h3>
-
-    ${postedMatches.length ? `
-      <div class="match-section">
-        <h4>Already Looking to Trade</h4>
-        <div class="match-list">
-          ${postedMatches.map(m => tradeMatchCard(current, m, true)).join("")}
-        </div>
+    <h3>Posted Looking to Trade Matches <span class="match-note">Only families who already posted a trade request are shown</span></h3>
+    <div class="match-section">
+      <div class="match-list">
+        ${matches.map(m => tradeMatchCard(current, m, true)).join("")}
       </div>
-    ` : `
-      <div class="match-box">
-        <strong>No posted trade requests match yet.</strong><br>
-        <span class="muted">You can still post your request so others can find you.</span>
-      </div>
-    `}
-
-    ${openMatches.length ? `
-      <div class="match-section">
-        <h4>Other Workable Slots</h4>
-        <div class="match-list">
-          ${openMatches.map(m => tradeMatchCard(current, m, false)).join("")}
-        </div>
-      </div>
-    ` : ""}
+    </div>
   `;
 
   box.querySelectorAll("[data-email-trade]").forEach(btn => {
