@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Borgia Fair Volunteer Portal v2.1</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="hero-image" role="banner" aria-label="Borgia Fair Volunteer Portal">
+    <img src="assets/hero/borgia_fair_hero.png" alt="We Are Borgia - Washington Town & Country Fair">
+  </header>
+
+  <nav class="top-nav">
+    <a href="#find">Find Assignment</a>
+    <a href="#trade-board">Trade Board</a>
+    <a href="#pass-splitter">Pass Splitter</a>
+    <a href="#coach-directory">Coach Directory</a>
+    <button id="coordinatorToggle" type="button">Coordinator View</button>
+  </nav>
+
+  <main class="container">
+    <section id="find" class="card find-card">
+      <h1>Find Your Assignment</h1>
+      <p class="muted">Search by last name, parent name, email, or phone.</p>
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="Example: Smith, JSmith@gmail.com, 324-555-5546" autocomplete="off">
+        <button id="clearSearch" class="btn">Clear</button>
+      </div>
+      <div id="searchStatus" class="status"></div>
+      <div id="searchResults" class="assignment-list"></div>
+    </section>
+
+    <section id="coordinatorPanel" class="card coordinator hidden">
+      <div class="section-title">
+        <h2>Coordinator View</h2>
+        <button id="resetLocalData" class="btn btn-danger" type="button">Reset Local Demo Data</button>
+      </div>
+      <p class="muted">This prototype stores confirmations and trades in this browser only. A production version should use Microsoft Lists or another shared backend.</p>
+      <div class="stats-grid">
+        <div><strong id="statAssignments">0</strong><span>Total Assignments</span></div>
+        <div><strong id="statConfirmed">0</strong><span>Confirmed</span></div>
+        <div><strong id="statAwaiting">0</strong><span>Awaiting</span></div>
+        <div><strong id="statTrades">0</strong><span>Trade Requests</span></div>
+      </div>
+    </section>
+
+    <section id="confirmed-board" class="card hidden-board">
+      <div class="section-title confirmed-title">
+        <h2>Confirmed Volunteers</h2>
+        <span id="confirmedCount" class="pill">0</span>
+      </div>
+      <div id="confirmedList" class="compact-list"></div>
+    </section>
+
+    <section id="awaiting-board" class="card hidden-board">
+      <div class="section-title awaiting-title">
+        <h2>Awaiting Confirmation</h2>
+        <span id="awaitingCount" class="pill">0</span>
+      </div>
+      <div id="awaitingList" class="compact-list"></div>
+    </section>
+
+    <section id="trade-board" class="card trade-card">
+      <div class="section-title">
+        <h2>Trade Board</h2>
+        <span id="tradeCount" class="pill">0</span>
+      </div>
+      <p class="trade-warning">Trade requests are not approved until confirmed. You remain responsible for your assigned shift.</p>
+      <div id="tradeList" class="trade-list"></div>
+    </section>
+
+
+    <section id="pass-splitter" class="card pass-card">
+      <div class="section-title">
+        <h2>Pass Splitter</h2>
+        <span id="passCount" class="pill">0</span>
+      </div>
+      <p class="muted">Fair admission can be expensive. Use this parent-to-parent tool to find another volunteer family whose shift is on a different day or opposite time block.</p>
+      <p class="pass-note">Pass sharing is coordinated directly between families.</p>
+
+      <div class="pass-form">
+        <div>
+          <label class="label" for="passLookupInput">Find Your Assignment</label>
+          <input id="passLookupInput" placeholder="Search name, email, phone, or slot number">
+          <input id="passSlotInput" type="hidden">
+          <div id="passLookupResults" class="pass-lookup-results"></div>
+        </div>
+        <div>
+          <label class="label" for="passMode">I am...</label>
+          <select id="passMode">
+            <option value="looking">Looking for someone to split with</option>
+            <option value="have">I have a pass and can share</option>
+            <option value="found">Partner found</option>
+          </select>
+        </div>
+        <div class="span-2">
+          <label class="label" for="passNote">Notes</label>
+          <textarea id="passNote" placeholder="Example: I only need the pass Sunday evening. Happy to split with someone earlier in the week."></textarea>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="findPassMatches" class="btn btn-gold" type="button">Find Compatible Families</button>
+        <button id="postPassRequest" class="btn btn-navy" type="button">Post Pass Split Request</button>
+      </div>
+
+      <div id="passMatches" class="pass-matches"></div>
+
+      <h3>Pass Splitter Board</h3>
+      <div id="passBoard" class="pass-board"></div>
+    </section>
+
+    <section id="coach-directory" class="card">
+      <h2>Lead Knights</h2>
+      <div class="directory-grid">
+        <div>
+          <h3>Point Coach for the day:</h3>
+          <div id="pointCoachDirectory"></div>
+        </div>
+        <div>
+          <h3>Head Coaches:</h3>
+          <div id="sportCoachDirectory"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="last-resort-contact" aria-label="Coordinator contact">
+    <img src="assets/headshots/Chris_Arand.jpg" alt="Chris Arand">
+    <div>
+      <strong>Still need help?</strong>
+      <span>Please contact your coach or Point Coach first. For unresolved issues, contact Chris Arand at <a href="mailto:chris.arand@borgia.com">chris.arand@borgia.com</a>.</span>
+    </div>
+  </section>
+
+  <footer>
+    Thank you for supporting Borgia Athletics and the Washington Town & Country Fair.
+  <br><a class="footer-subtle-link" href="announcement.html">2026 Borgia Volunteer Fair Announcement</a>
+  </footer>
+
+  <script src="data/fair_schedule.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
