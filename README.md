@@ -78,3 +78,30 @@ For shared confirmations/trades/emails, connect it to Microsoft Lists + Power Au
 - Possible trade matches only show families who have already posted a Looking to Trade request.
 - Other schedule slots are no longer exposed as trade match suggestions.
 - Pass Splitter moved to the end and styled as a distinct section.
+
+
+## v2.11 notes
+- Mobile search result cards are more compact.
+- Assignment icon is smaller.
+- Details stack tightly.
+- Buttons use a 2-column grid.
+- Point Coach detail is shortened on mobile.
+- Hero hides on very short mobile viewport/keyboard situations to reduce bouncing and improve visibility.
+
+
+## v2.12 notes
+- Mobile assignment results now collapse into short tappable rows.
+- Tapping an assignment card opens full details.
+- Lead Knights/Contacts section starts collapsed by default.
+- Changed files: `js/app.js` and `css/style.css`.
+
+
+## v2.13 notes
+- Reviewed current site structure and tightened the mobile workflow.
+- Search results now collapse into short rows at widths up to 900px, which helps inside mobile browsers and Teams/webviews.
+- Tapping an assignment opens full details.
+- Sport Coach is now optional during confirmation.
+- Confirmation email still sends to parents and Point Coach; selected Sport Coach is only CC'd if chosen.
+- Confirmation email includes Sport Coach email when a coach is selected.
+- Contacts/Lead Knights section remains collapsed by default.
+- Changed files: `js/app.js`, `css/style.css`, and `README.md`.
