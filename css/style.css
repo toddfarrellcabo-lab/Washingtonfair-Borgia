@@ -506,3 +506,90 @@ footer{text-align:center;background:var(--navy);color:white;padding:16px;margin-
   font-size:.9rem;
   padding:6px 0;
 }
+/* =====================================================
+   Mobile Stability / Anti-Bounce Fixes
+   ===================================================== */
+
+html{
+  width:100%;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+  min-height:100svh;
+  overscroll-behavior-y:none;
+}
+
+/* Prevent random horizontal movement */
+*{
+  box-sizing:border-box;
+}
+
+/* Hero image stays proportional */
+.hero-image{
+  overflow:hidden;
+}
+
+.hero-image img{
+  display:block;
+  width:min(100%,1600px);
+  height:auto !important;
+  max-width:100%;
+  object-fit:contain !important;
+}
+
+/* Mobile browsers hate sticky headers */
+.top-nav,
+nav,
+.site-nav{
+  position:relative !important;
+  top:auto !important;
+}
+
+/* Modal scrolling improvements */
+.trade-modal-overlay{
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+
+.trade-modal{
+  max-width:100%;
+}
+
+/* Prevent cards from causing horizontal scroll */
+.card,
+.assignment-card,
+.trade-item,
+.match-box,
+.point-coach-feature,
+.pass-card{
+  max-width:100%;
+  overflow-wrap:break-word;
+}
+
+/* Long emails/links */
+a{
+  overflow-wrap:anywhere;
+}
+
+/* Mobile viewport fixes */
+@supports(height:100dvh){
+  body{
+    min-height:100dvh;
+  }
+}
+
+/* Smooth anchor jumps */
+html{
+  scroll-behavior:smooth;
+}
+
+/* Prevent iOS rubber-band effect */
+body,
+.trade-modal-overlay{
+  overscroll-behavior-y:none;
+}
