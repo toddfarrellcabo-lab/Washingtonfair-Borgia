@@ -1,4 +1,4 @@
-:root{
+hi:root{
   --navy:#082b6f; --navy2:#041b45; --gold:#f4c430; --gold2:#d8a514;
   --bg:#f4f6fb; --line:#d8deeb; --text:#071936; --muted:#667085;
   --green:#157347; --green-bg:#e8f6ee; --red:#b42318; --red-bg:#fff1f0;
@@ -1061,7 +1061,18 @@ footer{text-align:center;background:var(--navy);color:white;padding:16px;margin-
 #sportCoachDirectory.collapsed-section{
   display:block !important;
 }
+.hero-banner{
+  width:100%;
+  margin:0 0 20px;
+  overflow:hidden;
+  border-radius:16px;
+}
 
+.hero-banner img{
+  display:block;
+  width:100%;
+  height:auto;
+}
 @media(max-width:900px){
   #point-coaches-section #pointCoachDirectory{
     grid-template-columns:1fr;
