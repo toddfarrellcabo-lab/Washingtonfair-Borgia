@@ -774,7 +774,6 @@ function downloadIcs(a, coach){
 }
 
 function openConfirmationEmail(a, coach){
-  if (!coach){ alert("Choose a sport coach first."); return; }
   const pc = a.pointCoach;
   const to = [a.email1, a.email2].filter(Boolean).join(",");
   const coachEmail = sportCoaches.find(c => c.fullName === coach)?.email1 || "";

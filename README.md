@@ -124,3 +124,11 @@ For shared confirmations/trades/emails, connect it to Microsoft Lists + Power Au
 - Coaches section is collapsed by default with simple Show/Hide button.
 - Sport Coach remains optional.
 - Rebuilt index structure so Find, Point Coaches, Coaches, Trade Board, and Pass Splitter are all inside the main container.
+
+
+## v2.19 notes
+- Rebuilt CSS with a lighter Borgia-inspired style based on the provided school stylesheet.
+- Removed duplicate Pass Splitter and Trade Board sections.
+- Reduced heavy/blocky typography and softened buttons/cards.
+- Kept Point Coaches visible and Coaches collapsed by default.
+- Moved Pass Splitter before Trade Board so Trade is lower priority.
