@@ -1059,8 +1059,8 @@ function setupMobileCollapsers(){
       if (target){
         target.classList.toggle("collapsed-section");
         toggle.textContent = target.classList.contains("collapsed-section")
-          ? "Show Head Coaches"
-          : "Hide Head Coaches";
+          ? "Show Coaches"
+          : "Hide Coaches";
       }
     }
   });
@@ -1073,7 +1073,7 @@ function setupMobileCollapsers(){
     btn.className = "btn section-toggle-btn head-coach-toggle-btn";
     btn.type = "button";
     btn.dataset.toggleSection = "#head-coaches-section";
-    btn.textContent = "Show Head Coaches";
+    btn.textContent = "Show";
 
     const heading = headCoachSection.querySelector("h2");
     if (heading){
