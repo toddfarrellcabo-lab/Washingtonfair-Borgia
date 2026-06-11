@@ -33,6 +33,7 @@ function init(){
   bindEvents();
   updateStats();
   handleCalendarDeepLink();
+  setupMobileCollapsers();
 }
 
 function cacheEls(){
@@ -226,7 +227,7 @@ function assignmentCard(a){
   const selectedCoach = confirmed?.sportCoach || "";
   const div = document.createElement("div");
   div.className = "assignment-card" + (confirmed ? " confirmed" : "");
-  const coachOptions = `<option value="">Select sport coach...</option>` +
+  const coachOptions = `<option value="">Optional - select if known...</option>` +
     sportCoaches.map(c => `<option value="${escapeAttr(c.fullName)}" ${c.fullName===selectedCoach?"selected":""}>${escapeHtml(c.fullName)}</option>`).join("");
 
   div.innerHTML = `
@@ -253,7 +254,7 @@ function assignmentCard(a){
       </div>
     </div>
     <div class="side-box">
-      <label class="label" for="coach-${escapeAttr(a.slot)}">Sport Coach</label>
+      <label class="label" for="coach-${escapeAttr(a.slot)}">Sport Coach <span class="optional-label">(optional)</span></label>
       <select id="coach-${escapeAttr(a.slot)}" class="coach-select">${coachOptions}</select>
       <div class="point-coach">
         <div class="label">Point Coach</div>
@@ -264,10 +265,11 @@ function assignmentCard(a){
 
   div.querySelector('[data-action="confirm"]').addEventListener("click", () => {
     const coach = div.querySelector("select").value;
-    if (!coach){ alert("Choose your sport coach/contact before confirming."); return; }
     confirmAssignment(a, coach);
     els.searchResults.innerHTML = "";
-    els.searchResults.appendChild(assignmentCard(a));
+    const confirmedCard = assignmentCard(a);
+    confirmedCard.classList.add("mobile-open");
+    els.searchResults.appendChild(confirmedCard);
     els.searchStatus.textContent = "Assignment confirmed. Email draft should open next.";
     openConfirmationEmail(a, coach);
   });
@@ -1038,5 +1040,49 @@ function joinSlash(a,b){ return [a,b].filter(Boolean).join(" / ") || "Not listed
 function onlyDigits(s){ return String(s || "").replace(/\D/g,""); }
 function escapeHtml(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
 function escapeAttr(s){ return escapeHtml(s).replace(/`/g,"&#096;"); }
+
+function setupMobileCollapsers(){
+  document.addEventListener("click", function(e){
+    const card = e.target.closest(".assignment-card");
+
+    if (
+      card &&
+      window.matchMedia("(max-width:900px)").matches &&
+      !e.target.closest("button, select, input, textarea, a")
+    ){
+      card.classList.toggle("mobile-open");
+    }
+
+    const toggle = e.target.closest("[data-toggle-section]");
+    if (toggle){
+      const target = document.querySelector(toggle.dataset.toggleSection);
+      if (target){
+        target.classList.toggle("collapsed-section");
+        toggle.textContent = target.classList.contains("collapsed-section")
+          ? "Show Head Coaches"
+          : "Hide Head Coaches";
+      }
+    }
+  });
+
+  const headCoachSection = document.querySelector("#head-coaches-section");
+  if (headCoachSection && !headCoachSection.querySelector(".head-coach-toggle-btn")){
+    headCoachSection.classList.add("collapsed-section");
+
+    const btn = document.createElement("button");
+    btn.className = "btn section-toggle-btn head-coach-toggle-btn";
+    btn.type = "button";
+    btn.dataset.toggleSection = "#head-coaches-section";
+    btn.textContent = "Show Head Coaches";
+
+    const heading = headCoachSection.querySelector("h2");
+    if (heading){
+      heading.insertAdjacentElement("afterend", btn);
+    } else {
+      headCoachSection.prepend(btn);
+    }
+  }
+}
+
 function loadState(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {confirmed:{},trades:{}}; } catch(e){ return {confirmed:{},trades:{}}; } }
 function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
