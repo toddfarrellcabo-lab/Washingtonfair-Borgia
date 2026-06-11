@@ -132,3 +132,25 @@ For shared confirmations/trades/emails, connect it to Microsoft Lists + Power Au
 - Reduced heavy/blocky typography and softened buttons/cards.
 - Kept Point Coaches visible and Coaches collapsed by default.
 - Moved Pass Splitter before Trade Board so Trade is lower priority.
+
+
+## v2.20 notes
+- Visual cleanup pass inspired by borgia.com typography and spacing.
+- Kept Point Coach headshots and Chris Arand footer headshot.
+- Dialed back heavy dark-blue blocks, font weights, and oversized labels.
+- Cleaned Trade Request modal copy and styling.
+- Removed duplicate Pass Splitter / Trade Board sections.
+- Kept Pass Splitter before Trade Board.
+
+
+## v3.0 notes
+- Visual rebuild inspired by Apple Support: clearer hierarchy, softer sections, less dark blue.
+- Added "How can we help?" quick-action intro.
+- Reduced top nav to Assignments, Pass Splitter, Trade Board, Contacts, Coordinator.
+- Kept Point Coach photos and Chris Arand footer photo.
+- Made Point Coach cards smaller, lighter, and less visually dominant.
+- Made Pass Splitter feel like a separate ticket-sharing tool.
+- Made Trade Board secondary and quieter.
+- Merged need-help messaging into the footer/contact area.
+- Removed duplicate Pass Splitter / Trade Board sections.
+- Cleaned trade modal wording and styling.

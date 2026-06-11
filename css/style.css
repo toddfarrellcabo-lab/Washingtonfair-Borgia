@@ -894,3 +894,1318 @@ footer{
     padding:7px 9px;
   }
 }
+
+/* =====================================================
+   v2.20 Visual Cleanup / Borgia-Inspired Refinement
+   Keeps point coach images and footer image.
+   ===================================================== */
+
+:root{
+  --body:#344054;
+  --muted:#667085;
+  --soft:#f7f8fa;
+  --soft2:#eef2f7;
+  --line:#d9dee8;
+  --navy:#003087;
+  --navy2:#001f5b;
+  --blue:#326abe;
+  --gold:#f2c230;
+  --dkGold:#9b7416;
+}
+
+/* reduce the overall heaviness */
+body{
+  font-size:16px;
+  line-height:1.75;
+  color:var(--body);
+  background:#f6f7fa;
+}
+
+.container{
+  max-width:1120px;
+  margin:26px auto;
+}
+
+.card{
+  border:1px solid var(--line);
+  border-radius:0;
+  box-shadow:none;
+  padding:26px;
+  margin-bottom:26px;
+  background:#fff;
+}
+
+.card:before{
+  width:48%;
+  height:42px;
+  border-right:3px solid var(--blue);
+  border-top:3px solid var(--blue);
+  opacity:.85;
+}
+
+h1{
+  font-size:clamp(1.65rem,2.5vw,2.15rem);
+  font-weight:700;
+  letter-spacing:.02em;
+  margin:0 0 .25rem;
+}
+
+h2{
+  font-size:clamp(1.25rem,2vw,1.65rem);
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+h3{
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:.03em;
+}
+
+.muted,
+.status{
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+/* top nav: smaller and more school-site-like */
+.top-nav{
+  padding:10px 12px;
+  gap:8px;
+}
+
+.top-nav a,
+.top-nav button{
+  border:0;
+  border-radius:0;
+  padding:8px 10px;
+  font-size:.7rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  background:transparent;
+  position:relative;
+}
+
+.top-nav a:after,
+.top-nav button:after{
+  content:"";
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:2px;
+  height:2px;
+  background:var(--gold);
+  transform:scaleX(0);
+  transition:transform .25s ease;
+}
+
+.top-nav a:hover:after,
+.top-nav button:hover:after{
+  transform:scaleX(1);
+}
+
+/* forms */
+input,
+select,
+textarea{
+  background:var(--soft);
+  border:0;
+  border-radius:0;
+  min-height:40px;
+  padding:10px 12px;
+  font-size:.9rem;
+  font-weight:400;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#98a2b3;
+}
+
+.label,
+label.label{
+  color:var(--blue);
+  font-size:.72rem;
+  letter-spacing:.16em;
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+.btn{
+  border-radius:0;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:10px 13px;
+  min-height:38px;
+  font-weight:700;
+  box-shadow:none;
+}
+
+.btn-navy{
+  background:var(--blue);
+  color:white;
+}
+
+.btn-navy:hover{
+  background:var(--navy);
+}
+
+.btn-gold{
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--navy);
+}
+
+.btn-gold:hover{
+  background:var(--gold);
+}
+
+.pill{
+  background:var(--soft2);
+  color:var(--blue);
+}
+
+/* assignment cards: cleaner and less blocky */
+.assignment-list{
+  gap:16px;
+}
+
+.assignment-card{
+  border:1px solid var(--line);
+  border-left:3px solid var(--blue);
+  border-radius:0;
+  padding:18px;
+  box-shadow:none;
+  grid-template-columns:1fr 190px;
+}
+
+.people{
+  font-size:1.08rem;
+  font-weight:700;
+  color:#101828;
+  letter-spacing:.01em;
+}
+
+.badge{
+  border-radius:0;
+  background:#fbf1ca;
+  color:#775b00;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:.68rem;
+}
+
+.detail-grid{
+  font-size:.88rem;
+  color:#344054;
+}
+
+.detail-grid strong{
+  color:#101828;
+  font-weight:700;
+}
+
+.position-icon{
+  width:50px;
+  height:50px;
+}
+
+.side-box{
+  border-left:1px solid var(--line);
+}
+
+.point-coach{
+  background:var(--soft);
+  border-left:3px solid var(--gold);
+  font-size:.86rem;
+}
+
+/* Point Coaches: keep the photos, dial back the ad feel */
+#point-coaches-section #pointCoachDirectory{
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:12px;
+}
+
+.point-coach-feature{
+  background:#fff;
+  color:var(--body);
+  border:1px solid var(--line);
+  border-left:4px solid var(--gold);
+  display:grid;
+  grid-template-columns:64px 1fr;
+  gap:12px;
+  padding:12px;
+  align-items:center;
+}
+
+.point-coach-feature a{
+  color:var(--blue);
+  text-decoration:none;
+  font-weight:700;
+}
+
+.point-coach-feature a:hover{
+  color:var(--navy);
+}
+
+.point-coach-feature strong{
+  color:#101828;
+  font-size:.98rem;
+}
+
+.point-day{
+  color:var(--dkGold);
+  border-bottom:0;
+  font-size:.74rem;
+  line-height:1.25;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:3px;
+}
+
+.coach-headshot{
+  width:64px;
+  height:78px;
+  border:1px solid var(--gold);
+  border-radius:0;
+}
+
+#head-coaches-section{
+  border-top:1px solid var(--line);
+}
+
+#head-coaches-section .head-coach-toggle-btn{
+  background:transparent;
+  color:var(--blue);
+  border:1px solid var(--line);
+}
+
+.directory-item,
+.compact-row,
+.trade-item,
+.match-box,
+.pass-lookup-choice,
+.pass-selected{
+  border:1px solid var(--line);
+  background:#fff;
+  font-size:.9rem;
+}
+
+/* pass/trade: quieter sections */
+.pass-card,
+.trade-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-top:3px solid var(--gold);
+}
+
+.pass-note,
+.trade-warning{
+  background:#f8fafc;
+  color:var(--body);
+  border-left:3px solid var(--gold);
+  padding:9px 11px;
+  font-size:.86rem;
+  font-weight:700;
+  line-height:1.45;
+}
+
+.pass-form{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:14px;
+}
+
+/* Trade modal: major cleanup */
+.trade-modal-overlay{
+  background:rgba(0,31,91,.58);
+  padding:24px 12px;
+}
+
+.trade-modal{
+  max-width:860px;
+  border-top:4px solid var(--gold);
+  border-radius:0;
+  box-shadow:0 20px 55px rgba(0,0,0,.22);
+  padding:28px;
+  color:var(--body);
+}
+
+.trade-modal h2{
+  font-size:1.45rem;
+  margin:0 0 .15rem;
+}
+
+.trade-modal .muted{
+  font-size:.9rem;
+  margin:0 0 1.15rem;
+}
+
+.trade-modal-head{
+  border-bottom:1px solid var(--line);
+  padding-bottom:14px;
+  margin-bottom:16px;
+}
+
+.trade-modal .trade-warning{
+  margin:0 0 18px;
+  background:#fff8df;
+  color:#5f4700;
+  border-left:3px solid var(--gold);
+}
+
+.mode-switch,
+.trade-reason{
+  border:0;
+  border-top:1px solid var(--line);
+  border-radius:0;
+  background:transparent;
+  padding:16px 0 10px;
+  margin:0;
+}
+
+.mode-switch legend,
+.trade-reason legend{
+  color:var(--blue);
+  font-size:.74rem;
+  letter-spacing:.16em;
+  font-weight:700;
+  text-transform:uppercase;
+  padding:0;
+  margin:0 0 8px;
+}
+
+.mode-switch label,
+.trade-reason label{
+  font-size:.92rem;
+  font-weight:500;
+  color:var(--body);
+  margin:0 22px 8px 0;
+}
+
+.trade-modal h3{
+  color:#101828;
+  font-size:1.05rem;
+  margin:14px 0 2px;
+  font-weight:700;
+}
+
+.trade-modal p{
+  margin:.15rem 0 .75rem;
+}
+
+.unavailable-grid{
+  border-top:1px solid var(--line);
+  margin-top:12px;
+  padding-top:8px;
+  gap:0;
+}
+
+.trade-day,
+.unavailable-day{
+  border:0;
+  border-bottom:1px solid var(--line);
+  background:transparent;
+  grid-template-columns:120px 1fr;
+  padding:9px 0;
+}
+
+.trade-day.active,
+.unavailable-day.active{
+  background:transparent;
+  border-color:var(--line);
+}
+
+.day-label{
+  font-weight:700;
+  color:#101828;
+}
+
+.time-options{
+  gap:7px;
+}
+
+.time-options label{
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--body);
+  padding:5px 9px;
+  font-size:.82rem;
+  font-weight:400;
+}
+
+.trade-day.active .time-options label,
+.unavailable-day.active .time-options label{
+  background:#fff;
+}
+
+.trade-day:not(.active) .time-options,
+.unavailable-day:not(.active) .time-options{
+  opacity:.45;
+}
+
+.trade-modal textarea{
+  min-height:72px;
+}
+
+.trade-modal-actions{
+  border-bottom:1px solid var(--line);
+  margin-top:16px;
+  padding-bottom:16px;
+}
+
+/* Footer contact: keep Chris image but make subtle */
+.last-resort-contact{
+  border:1px solid var(--line);
+  border-radius:0;
+  background:#fff;
+  max-width:1120px;
+  box-shadow:none;
+}
+
+.last-resort-contact img{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+}
+
+/* mobile */
+@media(max-width:900px){
+  body{
+    font-size:15px;
+    line-height:1.65;
+  }
+
+  .container{
+    padding:0 10px;
+    margin:14px auto;
+  }
+
+  .card{
+    padding:18px;
+  }
+
+  .card:before{
+    width:34%;
+    height:24px;
+  }
+
+  .assignment-card{
+    padding:12px!important;
+  }
+
+  .people{
+    font-size:1rem!important;
+  }
+
+  .assignment-card.mobile-open .actions{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .point-coach-feature{
+    grid-template-columns:58px 1fr;
+  }
+
+  .coach-headshot{
+    width:58px;
+    height:70px;
+  }
+
+  .trade-modal{
+    padding:20px;
+  }
+
+  .trade-day,
+  .unavailable-day{
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+
+  .top-nav a,
+  .top-nav button{
+    font-size:.66rem;
+    letter-spacing:.1em;
+    padding:7px 8px;
+  }
+}
+
+/* =====================================================
+   v3.0 Clean Portal Redesign
+   Apple Support-inspired: calm, clear, spacious.
+   ===================================================== */
+
+:root{
+  --v3-navy:#003087;
+  --v3-blue:#326abe;
+  --v3-gold:#f2c230;
+  --v3-dk-gold:#9b7416;
+  --v3-text:#1d1d1f;
+  --v3-body:#475467;
+  --v3-muted:#6e7480;
+  --v3-line:#e5e7eb;
+  --v3-soft:#f5f5f7;
+  --v3-cream:#fff8e1;
+  --v3-white:#fff;
+  --v3-radius:18px;
+}
+
+html,
+body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+body{
+  background:#fff;
+  color:var(--v3-text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.58;
+  font-weight:400;
+  letter-spacing:-.01em;
+}
+
+/* Hero becomes calm and centered */
+.hero-image{
+  background:#fff !important;
+  border-bottom:0 !important;
+  padding:18px 18px 8px !important;
+}
+
+.hero-image img{
+  width:min(100%,1280px) !important;
+  border-radius:12px !important;
+  box-shadow:0 1px 2px rgba(0,0,0,.06);
+}
+
+/* Simplified nav */
+.top-nav{
+  background:rgba(0,48,135,.96) !important;
+  border-bottom:3px solid var(--v3-gold) !important;
+  padding:10px 12px !important;
+  gap:6px !important;
+  position:sticky !important;
+  top:0 !important;
+  backdrop-filter:blur(14px);
+}
+
+.top-nav a,
+.top-nav button{
+  color:#fff !important;
+  border:0 !important;
+  background:transparent !important;
+  border-radius:999px !important;
+  padding:7px 12px !important;
+  font-size:.78rem !important;
+  font-weight:600 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  opacity:.92;
+}
+
+.top-nav a:hover,
+.top-nav button:hover{
+  background:rgba(255,255,255,.13) !important;
+  opacity:1;
+}
+
+.top-nav a:after,
+.top-nav button:after{
+  display:none !important;
+}
+
+/* Main layout */
+.container{
+  max-width:1120px !important;
+  margin:0 auto !important;
+  padding:24px 18px 36px !important;
+}
+
+/* Support intro */
+.support-intro{
+  text-align:center;
+  padding:36px 10px 34px;
+}
+
+.eyebrow{
+  margin:0 0 8px;
+  color:var(--v3-dk-gold);
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.support-intro h1{
+  margin:0;
+  color:var(--v3-text);
+  font-size:clamp(2.1rem,5vw,3.8rem);
+  line-height:1.05;
+  font-weight:650;
+  letter-spacing:-.045em;
+}
+
+.intro-copy{
+  max-width:680px;
+  margin:14px auto 0;
+  color:var(--v3-body);
+  font-size:clamp(1rem,1.8vw,1.24rem);
+  line-height:1.45;
+}
+
+.quick-actions{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin:28px auto 0;
+  max-width:860px;
+}
+
+.quick-action{
+  display:block;
+  padding:20px 18px;
+  border:1px solid var(--v3-line);
+  border-radius:var(--v3-radius);
+  background:var(--v3-soft);
+  color:var(--v3-text);
+  text-align:left;
+  text-decoration:none;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.quick-action:hover{
+  transform:translateY(-2px);
+  border-color:#d0d5dd;
+  box-shadow:0 12px 30px rgba(16,24,40,.08);
+}
+
+.quick-action span{
+  display:block;
+  color:var(--v3-blue);
+  font-size:1.05rem;
+  font-weight:650;
+  margin-bottom:4px;
+}
+
+.quick-action small{
+  display:block;
+  color:var(--v3-muted);
+  font-size:.9rem;
+  line-height:1.35;
+}
+
+/* Sections */
+.card{
+  position:relative !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  padding:30px 0 !important;
+  margin:0 !important;
+  background:#fff !important;
+  border-top:1px solid var(--v3-line) !important;
+}
+
+.card:before{
+  display:none !important;
+}
+
+.card > h1,
+.card > h2,
+.section-title h2{
+  color:var(--v3-text) !important;
+  font-size:clamp(1.45rem,2.5vw,2rem) !important;
+  line-height:1.15 !important;
+  font-weight:650 !important;
+  letter-spacing:-.03em !important;
+  margin:0 0 8px !important;
+}
+
+.card h3{
+  color:var(--v3-text) !important;
+  font-size:1rem !important;
+  font-weight:650 !important;
+}
+
+.muted,
+.status,
+.pc-small{
+  color:var(--v3-muted) !important;
+  font-size:.92rem !important;
+  line-height:1.45 !important;
+}
+
+/* Forms */
+.search-row{
+  display:grid !important;
+  grid-template-columns:1fr auto !important;
+  gap:10px !important;
+  margin-top:14px !important;
+}
+
+input,
+select,
+textarea{
+  background:var(--v3-soft) !important;
+  border:1px solid transparent !important;
+  border-radius:12px !important;
+  color:var(--v3-text) !important;
+  min-height:44px !important;
+  padding:11px 13px !important;
+  font-size:.95rem !important;
+  font-weight:400 !important;
+  box-shadow:none !important;
+}
+
+textarea{
+  min-height:90px !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:0 !important;
+  background:#fff !important;
+  border-color:#9bb7ed !important;
+  box-shadow:0 0 0 4px rgba(50,106,190,.13) !important;
+}
+
+.label,
+label.label{
+  color:var(--v3-blue) !important;
+  font-size:.72rem !important;
+  font-weight:650 !important;
+  letter-spacing:.11em !important;
+  text-transform:uppercase !important;
+}
+
+.btn{
+  border:0 !important;
+  border-radius:999px !important;
+  min-height:42px !important;
+  padding:10px 16px !important;
+  font-size:.9rem !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  box-shadow:none !important;
+}
+
+.btn-navy{
+  background:var(--v3-blue) !important;
+  color:#fff !important;
+}
+
+.btn-gold{
+  background:var(--v3-gold) !important;
+  color:var(--v3-navy) !important;
+}
+
+.btn:hover{
+  filter:brightness(.96);
+}
+
+.pill{
+  background:var(--v3-soft) !important;
+  color:var(--v3-blue) !important;
+  font-weight:650 !important;
+}
+
+/* Assignment cards */
+.assignment-list{
+  gap:14px !important;
+  margin-top:10px !important;
+}
+
+.assignment-card{
+  border:1px solid var(--v3-line) !important;
+  border-radius:18px !important;
+  border-left:0 !important;
+  box-shadow:none !important;
+  padding:18px !important;
+  grid-template-columns:1fr 185px !important;
+  background:#fff !important;
+}
+
+.assignment-card:hover{
+  border-color:#d0d5dd !important;
+  box-shadow:0 10px 26px rgba(16,24,40,.06) !important;
+}
+
+.assignment-head{
+  gap:12px !important;
+}
+
+.position-icon{
+  width:48px !important;
+  height:48px !important;
+  opacity:.9;
+}
+
+.badge{
+  background:#fff3bf !important;
+  color:#7a5b00 !important;
+  border-radius:999px !important;
+  padding:4px 9px !important;
+  font-size:.72rem !important;
+  font-weight:600 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+}
+
+.people{
+  color:var(--v3-text) !important;
+  font-size:1.08rem !important;
+  font-weight:650 !important;
+  line-height:1.22 !important;
+  margin:8px 0 7px !important;
+}
+
+.detail-grid{
+  color:var(--v3-body) !important;
+  font-size:.9rem !important;
+  gap:2px 18px !important;
+}
+
+.detail-grid strong{
+  color:var(--v3-text) !important;
+  font-weight:600 !important;
+}
+
+.side-box{
+  border-left:1px solid var(--v3-line) !important;
+}
+
+.coach-select{
+  margin:6px 0 10px !important;
+}
+
+.point-coach{
+  background:var(--v3-soft) !important;
+  border:0 !important;
+  border-radius:14px !important;
+  padding:12px !important;
+}
+
+.point-coach .pc-name{
+  color:var(--v3-text) !important;
+  font-weight:650 !important;
+}
+
+/* Point coaches: keep images, reduce prominence */
+#point-coaches-section #pointCoachDirectory{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr)) !important;
+  gap:14px !important;
+  margin-top:16px !important;
+}
+
+.point-coach-feature{
+  background:var(--v3-soft) !important;
+  color:var(--v3-body) !important;
+  border:1px solid transparent !important;
+  border-radius:18px !important;
+  border-left:0 !important;
+  padding:14px !important;
+  display:grid !important;
+  grid-template-columns:58px 1fr !important;
+  gap:12px !important;
+  align-items:center !important;
+}
+
+.point-coach-feature:hover{
+  background:#fff !important;
+  border-color:var(--v3-line) !important;
+}
+
+.coach-headshot{
+  width:58px !important;
+  height:58px !important;
+  border-radius:50% !important;
+  border:2px solid #fff !important;
+  box-shadow:0 1px 5px rgba(16,24,40,.16) !important;
+}
+
+.point-day{
+  display:block !important;
+  color:var(--v3-muted) !important;
+  font-size:.76rem !important;
+  line-height:1.25 !important;
+  font-weight:500 !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  border:0 !important;
+  margin:0 0 1px !important;
+}
+
+.point-coach-feature strong{
+  display:block !important;
+  color:var(--v3-text) !important;
+  font-size:.98rem !important;
+  line-height:1.2 !important;
+  font-weight:650 !important;
+  margin-bottom:1px !important;
+}
+
+.point-coach-feature a{
+  color:var(--v3-blue) !important;
+  font-size:.84rem !important;
+  line-height:1.25 !important;
+  font-weight:500 !important;
+  text-decoration:none !important;
+  overflow-wrap:anywhere;
+}
+
+/* Head coaches accordion */
+#head-coaches-section{
+  padding-top:26px !important;
+}
+
+#head-coaches-section .head-coach-toggle-btn{
+  background:var(--v3-soft) !important;
+  color:var(--v3-blue) !important;
+  margin-top:4px !important;
+}
+
+#head-coaches-section.collapsed-section #sportCoachDirectory{
+  display:none !important;
+}
+
+.directory-item{
+  border:1px solid var(--v3-line) !important;
+  border-radius:14px !important;
+  background:#fff !important;
+}
+
+/* Pass Splitter: separate feel */
+.pass-card{
+  margin-top:8px !important;
+  padding:34px 24px !important;
+  border:1px solid #f5d46b !important;
+  border-radius:24px !important;
+  background:linear-gradient(180deg,#fffdf5 0%,#fff8db 100%) !important;
+}
+
+.pass-card:before{
+  display:none !important;
+}
+
+.pass-card .section-title,
+.trade-card .section-title{
+  border:0 !important;
+  margin-bottom:10px !important;
+  padding:0 !important;
+}
+
+.pass-card .section-title h2:before{
+  content:"🎟 ";
+}
+
+.pass-card .muted{
+  max-width:720px;
+}
+
+.pass-note{
+  background:#fff !important;
+  border:1px solid #f5d46b !important;
+  border-left:4px solid var(--v3-gold) !important;
+  color:#6f4f00 !important;
+  border-radius:16px !important;
+  padding:12px 14px !important;
+  font-weight:500 !important;
+}
+
+.pass-form{
+  border:0 !important;
+  border-radius:18px !important;
+  background:#fff !important;
+  padding:16px !important;
+}
+
+/* Trade Board: secondary and quieter */
+.trade-card{
+  padding:30px 0 !important;
+  border-top:1px solid var(--v3-line) !important;
+  background:#fff !important;
+}
+
+.trade-card .section-title h2:before{
+  content:"↔ ";
+  color:var(--v3-blue);
+}
+
+.trade-warning{
+  display:inline-block !important;
+  background:var(--v3-soft) !important;
+  border:0 !important;
+  border-radius:999px !important;
+  color:var(--v3-muted) !important;
+  padding:7px 12px !important;
+  font-size:.88rem !important;
+  font-weight:500 !important;
+}
+
+/* Modal: clean Apple-like sheet */
+.trade-modal-overlay{
+  background:rgba(0,0,0,.42) !important;
+  padding:28px 12px !important;
+}
+
+.trade-modal{
+  width:min(880px,100%) !important;
+  border:0 !important;
+  border-radius:24px !important;
+  box-shadow:0 22px 70px rgba(0,0,0,.24) !important;
+  padding:28px !important;
+  color:var(--v3-text) !important;
+}
+
+.trade-modal-head{
+  border-bottom:1px solid var(--v3-line) !important;
+  padding-bottom:18px !important;
+  margin-bottom:16px !important;
+}
+
+.trade-modal h2{
+  font-size:1.55rem !important;
+  font-weight:650 !important;
+  letter-spacing:-.03em !important;
+}
+
+.trade-modal .trade-warning{
+  margin:0 0 10px !important;
+}
+
+.mode-switch,
+.trade-reason{
+  border:0 !important;
+  border-top:1px solid var(--v3-line) !important;
+  background:transparent !important;
+  padding:16px 0 10px !important;
+  margin:0 !important;
+}
+
+.mode-switch legend,
+.trade-reason legend{
+  color:var(--v3-muted) !important;
+  font-size:.78rem !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+  font-weight:600 !important;
+}
+
+.mode-switch label,
+.trade-reason label{
+  font-size:.94rem !important;
+  color:var(--v3-text) !important;
+  font-weight:500 !important;
+}
+
+.trade-modal h3{
+  font-size:1.05rem !important;
+  font-weight:650 !important;
+  margin:14px 0 2px !important;
+}
+
+.unavailable-grid{
+  border-top:1px solid var(--v3-line) !important;
+  gap:0 !important;
+}
+
+.trade-day,
+.unavailable-day{
+  border:0 !important;
+  border-bottom:1px solid var(--v3-line) !important;
+  background:transparent !important;
+  grid-template-columns:112px 1fr !important;
+  padding:10px 0 !important;
+}
+
+.trade-day.active,
+.unavailable-day.active{
+  background:transparent !important;
+}
+
+.day-label{
+  color:var(--v3-text) !important;
+  font-weight:600 !important;
+}
+
+.time-options label{
+  border:1px solid var(--v3-line) !important;
+  border-radius:999px !important;
+  background:#fff !important;
+  padding:6px 10px !important;
+  font-size:.86rem !important;
+  font-weight:400 !important;
+}
+
+/* Help and footer merged feel */
+.last-resort-contact{
+  max-width:1120px !important;
+  margin:18px auto 0 !important;
+  padding:22px 18px !important;
+  border:0 !important;
+  border-top:1px solid var(--v3-line) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:#fff !important;
+  color:var(--v3-body) !important;
+}
+
+.last-resort-contact img{
+  width:44px !important;
+  height:44px !important;
+  border-radius:50% !important;
+  border:0 !important;
+  box-shadow:0 1px 4px rgba(0,0,0,.16);
+}
+
+.last-resort-contact strong{
+  color:var(--v3-text) !important;
+  font-size:1rem !important;
+}
+
+.last-resort-contact span{
+  color:var(--v3-muted);
+  font-size:.9rem;
+}
+
+footer{
+  background:#f5f5f7 !important;
+  color:var(--v3-muted) !important;
+  padding:24px 18px !important;
+  margin:0 !important;
+  font-size:.86rem !important;
+}
+
+footer p{
+  margin:.1rem 0 .35rem;
+}
+
+.footer-subtle-link{
+  color:var(--v3-blue) !important;
+  font-weight:500 !important;
+}
+
+/* Mobile */
+@media(max-width:900px){
+  .hero-image{
+    padding:10px 10px 6px !important;
+  }
+
+  .top-nav{
+    position:relative !important;
+    top:auto !important;
+  }
+
+  .container{
+    padding:18px 12px 28px !important;
+  }
+
+  .support-intro{
+    padding:26px 4px 24px !important;
+  }
+
+  .quick-actions{
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+
+  .card{
+    padding:24px 0 !important;
+  }
+
+  .search-row{
+    grid-template-columns:1fr !important;
+  }
+
+  .assignment-card{
+    display:block !important;
+    padding:14px !important;
+  }
+
+  .position-icon{
+    display:none !important;
+  }
+
+  .assignment-card:not(.mobile-open) .detail-grid div:nth-child(n+3),
+  .assignment-card:not(.mobile-open) .notes,
+  .assignment-card:not(.mobile-open) .actions,
+  .assignment-card:not(.mobile-open) .side-box{
+    display:none !important;
+  }
+
+  .assignment-card.mobile-open .actions{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:8px !important;
+  }
+
+  .assignment-card.mobile-open .side-box{
+    border-left:0 !important;
+    border-top:1px solid var(--v3-line) !important;
+    padding-left:0 !important;
+    padding-top:12px !important;
+    margin-top:12px !important;
+  }
+
+  .assignment-card::after{
+    content:"Tap to view details";
+    display:block;
+    margin-top:5px;
+    color:var(--v3-muted);
+    font-size:.78rem;
+  }
+
+  .assignment-card.mobile-open::after{
+    content:"Tap card to collapse";
+  }
+
+  #point-coaches-section #pointCoachDirectory{
+    grid-template-columns:1fr !important;
+  }
+
+  .point-coach-feature{
+    grid-template-columns:50px 1fr !important;
+    border-radius:16px !important;
+  }
+
+  .coach-headshot{
+    width:50px !important;
+    height:50px !important;
+  }
+
+  .pass-card{
+    padding:24px 16px !important;
+    border-radius:20px !important;
+  }
+
+  .pass-form{
+    grid-template-columns:1fr !important;
+  }
+
+  .trade-day,
+  .unavailable-day{
+    grid-template-columns:1fr !important;
+    gap:7px !important;
+  }
+
+  .trade-modal{
+    border-radius:20px !important;
+    padding:22px !important;
+  }
+
+  .time-options{
+    gap:6px !important;
+  }
+
+  .top-nav a,
+  .top-nav button{
+    font-size:.76rem !important;
+    padding:7px 10px !important;
+  }
+}
+

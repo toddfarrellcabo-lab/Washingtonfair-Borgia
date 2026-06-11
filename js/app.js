@@ -169,6 +169,19 @@ function isVolunteerPosition(pos){
   return ["soda stand","fish/chips","soda stand/fc","potential substitute parents","fish stand","fish stand or soda stand","substitute helper"].some(x => p.includes(x));
 }
 
+
+function shortDayDate(value){
+  if (!value) return "";
+  return String(value)
+    .replace("Monday,", "Mon,")
+    .replace("Tuesday,", "Tue,")
+    .replace("Wednesday,", "Wed,")
+    .replace("Thursday,", "Thu,")
+    .replace("Friday,", "Fri,")
+    .replace("Saturday,", "Sat,")
+    .replace("Sunday,", "Sun,");
+}
+
 function displayPosition(pos){
   const p = (pos || "").toLowerCase();
   if (p.includes("soda") && (p.includes("fc") || p.includes("fish"))) return "Fish Stand or Soda Stand";
@@ -347,44 +360,44 @@ function showTradeModal(a){
     <div class="trade-modal" role="dialog" aria-modal="true" aria-labelledby="tradeModalTitle">
       <div class="trade-modal-head">
         <div>
-          <h2 id="tradeModalTitle">Request Trade</h2>
+          <h2 id="tradeModalTitle">Trade Request</h2>
           <p class="muted">Slot ${escapeHtml(a.slot)} • ${escapeHtml(displayPosition(a.position))} • ${escapeHtml(a.date)} • ${escapeHtml(a.time || "Time not listed")}</p>
         </div>
         <button class="btn" type="button" data-close-trade>Close</button>
       </div>
 
       <div class="trade-warning">
-        Trade requests are not approved until confirmed. You remain responsible for your assigned shift.
+        Trades require approval.
       </div>
 
       <fieldset class="mode-switch">
-        <legend>Trade Preference Mode</legend>
+        <legend>Preference</legend>
         <label>
           <input type="radio" name="tradeMode" value="available" checked>
-          <span>Times I CAN work</span>
+          <span>I can work</span>
         </label>
         <label>
           <input type="radio" name="tradeMode" value="unavailable">
-          <span>Times I CANNOT work</span>
+          <span>I cannot work</span>
         </label>
       </fieldset>
 
-      <h3 id="tradePickerTitle">Times I Can Work</h3>
-      <p class="muted" id="tradePickerHelp">Select the days and time blocks that would work for a trade.</p>
+      <h3 id="tradePickerTitle">I can work</h3>
+      <p class="muted" id="tradePickerHelp">Choose days and time blocks.</p>
 
       <div class="unavailable-grid">
         ${days.map(day => tradeDayRow(day)).join("")}
       </div>
 
       <fieldset class="trade-reason">
-        <legend>Reason for Trade Request</legend>
+        <legend>Reason</legend>
         <label>
           <input type="radio" name="tradeReason" value="conflict" checked>
-          <span>Schedule conflict — I need a different shift</span>
+          <span>Schedule conflict</span>
         </label>
         <label>
           <input type="radio" name="tradeReason" value="preference">
-          <span>Preference only — I'd like a different shift if available</span>
+          <span>Preference only</span>
         </label>
       </fieldset>
 
@@ -392,8 +405,8 @@ function showTradeModal(a){
       <textarea id="tradeNote" placeholder="Example: I can work Saturday afternoon or Sunday morning."></textarea>
 
       <div class="actions trade-modal-actions">
-        <button class="btn btn-gold" type="button" data-show-matches>Show Possible Trade Slots</button>
-        <button class="btn btn-navy" type="button" data-post-trade>Post Trade Request</button>
+        <button class="btn btn-gold" type="button" data-show-matches>Show Matches</button>
+        <button class="btn btn-navy" type="button" data-post-trade>Post Request</button>
         <button class="btn" type="button" data-close-trade>Cancel</button>
       </div>
 
@@ -412,10 +425,10 @@ function showTradeModal(a){
     radio.addEventListener("change", () => {
       const mode = getTradeMode();
       document.getElementById("tradePickerTitle").textContent =
-        mode === "available" ? "Times I Can Work" : "Times I Cannot Work";
+        mode === "available" ? "I can work" : "Unavailable";
       document.getElementById("tradePickerHelp").textContent =
         mode === "available"
-          ? "Select the days and time blocks that would work for a trade."
+          ? "Choose days and time blocks."
           : "Select the days and time blocks that would not work for you.";
       renderPossibleMatches(a);
     });
@@ -547,7 +560,7 @@ function renderPossibleMatches(current, forceOpen=false){
     .filter(m => state.trades && state.trades[m.slot]);
 
   if (!forceOpen && Object.keys(data).length === 0){
-    box.innerHTML = `<p class="muted">Select days/times to preview posted Looking to Trade matches.</p>`;
+    box.innerHTML = `<p class="muted">Choose times to preview matches.</p>`;
     return;
   }
 
@@ -671,7 +684,7 @@ function formatUnavailable(unavailable){
 function renderTrades(){
   const trades = Object.values(state.trades);
   els.tradeCount.textContent = trades.length;
-  els.tradeList.innerHTML = trades.length ? "" : `<p class="muted">No trade requests on this device yet.</p>`;
+  els.tradeList.innerHTML = trades.length ? "" : `<p class="muted">No trade requests yet.</p>`;
   trades.forEach(t => {
     const a = assignments.find(x => x.slot == t.slot);
     if (!a) return;
@@ -949,7 +962,7 @@ function renderPassBoard(){
   if (els.passCount) els.passCount.textContent = entries.length;
 
   if (!entries.length){
-    els.passBoard.innerHTML = `<p class="muted">No pass split requests on this device yet.</p>`;
+    els.passBoard.innerHTML = `<p class="muted">No pass requests yet.</p>`;
     return;
   }
 
