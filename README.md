@@ -154,3 +154,15 @@ For shared confirmations/trades/emails, connect it to Microsoft Lists + Power Au
 - Merged need-help messaging into the footer/contact area.
 - Removed duplicate Pass Splitter / Trade Board sections.
 - Cleaned trade modal wording and styling.
+
+
+## v3.1 notes
+- Removed the redundant "How can we help?" intro and quick-action buttons.
+- Made Find Assignment the immediate primary section.
+- Reduced hero size.
+- Strengthened top navigation buttons.
+- Reworked Point Coach cards with color, square headshots, prominent abbreviated date, and no email wrapping.
+- Combined Head Coaches heading and Show control into one compact accordion row.
+- Made Pass Splitter feel like a separate ticket-style feature.
+- Renamed Trade Board visually to Slot Swap and made it feel like its own feature panel.
+- Integrated Need Help into a cleaner footer area.

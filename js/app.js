@@ -170,6 +170,19 @@ function isVolunteerPosition(pos){
 }
 
 
+
+function compactPointCoachDate(value){
+  if (!value) return "";
+  return String(value)
+    .replace("Monday,", "Mon,")
+    .replace("Tuesday,", "Tue,")
+    .replace("Wednesday,", "Wed,")
+    .replace("Thursday,", "Thu,")
+    .replace("Friday,", "Fri,")
+    .replace("Saturday,", "Sat,")
+    .replace("Sunday,", "Sun,");
+}
+
 function shortDayDate(value){
   if (!value) return "";
   return String(value)
@@ -305,7 +318,7 @@ function pointCoachFullHtml(c){
     <div class="point-coach-feature">
       ${photo ? `<img class="coach-headshot" src="${escapeAttr(photo)}" alt="${escapeAttr(c.fullName)}">` : `<div></div>`}
       <div>
-        <div class="point-day">${escapeHtml(c.date)}</div><br>
+        <div class="point-day">${escapeHtml(compactPointCoachDate(c.date))}</div><br>
         <strong>${escapeHtml(c.fullName)}</strong><br>
         ${c.email1 ? `<a href="mailto:${escapeAttr(c.email1)}">${escapeHtml(c.email1)}</a><br>` : ""}
         ${c.phone1 ? `<a href="tel:${escapeAttr(onlyDigits(c.phone1))}">${escapeHtml(c.phone1)}</a>` : ""}
@@ -360,14 +373,14 @@ function showTradeModal(a){
     <div class="trade-modal" role="dialog" aria-modal="true" aria-labelledby="tradeModalTitle">
       <div class="trade-modal-head">
         <div>
-          <h2 id="tradeModalTitle">Trade Request</h2>
+          <h2 id="tradeModalTitle">Slot Swap Request</h2>
           <p class="muted">Slot ${escapeHtml(a.slot)} • ${escapeHtml(displayPosition(a.position))} • ${escapeHtml(a.date)} • ${escapeHtml(a.time || "Time not listed")}</p>
         </div>
         <button class="btn" type="button" data-close-trade>Close</button>
       </div>
 
       <div class="trade-warning">
-        Trades require approval.
+        Trade requests require approval.
       </div>
 
       <fieldset class="mode-switch">
@@ -405,8 +418,8 @@ function showTradeModal(a){
       <textarea id="tradeNote" placeholder="Example: I can work Saturday afternoon or Sunday morning."></textarea>
 
       <div class="actions trade-modal-actions">
-        <button class="btn btn-gold" type="button" data-show-matches>Show Matches</button>
-        <button class="btn btn-navy" type="button" data-post-trade>Post Request</button>
+        <button class="btn btn-gold" type="button" data-show-matches>Find Possible Swaps</button>
+        <button class="btn btn-navy" type="button" data-post-trade>Post Swap Request</button>
         <button class="btn" type="button" data-close-trade>Cancel</button>
       </div>
 
@@ -560,7 +573,7 @@ function renderPossibleMatches(current, forceOpen=false){
     .filter(m => state.trades && state.trades[m.slot]);
 
   if (!forceOpen && Object.keys(data).length === 0){
-    box.innerHTML = `<p class="muted">Choose times to preview matches.</p>`;
+    box.innerHTML = `<p class="muted">Choose times to preview possible swaps.</p>`;
     return;
   }
 
@@ -684,7 +697,7 @@ function formatUnavailable(unavailable){
 function renderTrades(){
   const trades = Object.values(state.trades);
   els.tradeCount.textContent = trades.length;
-  els.tradeList.innerHTML = trades.length ? "" : `<p class="muted">No trade requests yet.</p>`;
+  els.tradeList.innerHTML = trades.length ? "" : `<p class="muted">No swap requests yet.</p>`;
   trades.forEach(t => {
     const a = assignments.find(x => x.slot == t.slot);
     if (!a) return;
@@ -716,7 +729,7 @@ function offerTrade(target, trade){
   if (!mySlot) return;
   const offered = assignments.find(a => String(a.slot) === String(mySlot).trim());
   if (!offered){ alert("Could not find that slot number."); return; }
-  const subject = `Borgia Fair Trade Request • Slot ${offered.slot} for Slot ${target.slot}`;
+  const subject = `Borgia Fair Slot Swap Request • Slot ${offered.slot} for Slot ${target.slot}`;
   const pointEmails = [target.pointCoach?.email1, offered.pointCoach?.email1].filter(Boolean);
   const body = [
     "A trade has been proposed. This is not approved until confirmed by the proper coach/contact.",
@@ -798,7 +811,7 @@ function openConfirmationEmail(a, coach){
     `Sport Coach: ${coach}`,"","Point Coach:", pc ? `${pc.fullName}\n${pc.phone1 || ""}\n${pc.email1 || ""}` : "Not found","",
     a.notes ? `Notes: ${a.notes}\n` : "",
     "Add to Calendar:", calendarLink(a.slot),"","View Assignment Portal:", portalBaseLink(),"",
-    "If your availability changes, use the Trade Board. You remain responsible for your shift until a trade is approved.","",
+    "If your availability changes, use the Slot Swap. You remain responsible for your shift until a trade is approved.","",
     "Thank you for supporting Borgia Athletics.","We Are Borgia."
   ].join("\n");
   location.href = mailtoUrl(to, subject, body, cc);

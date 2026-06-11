@@ -2209,3 +2209,410 @@ footer p{
   }
 }
 
+/* =====================================================
+   v3.1 Focused Portal Refinement
+   Goal: get users straight to Find Assignment, reduce blue,
+   make Pass Splitter and Slot Swap feel like feature panels.
+   ===================================================== */
+
+/* Overall page: lighter, less "app dashboard" */
+body{
+  background:#fbfbfd !important;
+}
+
+/* Smaller hero with soft fair-style background */
+.hero-image{
+  padding:14px 18px 6px !important;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(242,194,48,.16), transparent 32%),
+    linear-gradient(135deg,#fff 0%,#fbf4e4 48%,#f5f7fb 100%) !important;
+}
+
+.hero-image img{
+  width:min(100%,980px) !important;
+  max-height:360px !important;
+  object-fit:contain !important;
+  border-radius:10px !important;
+}
+
+/* Nav needs enough contrast and weight */
+.top-nav{
+  background:#003087 !important;
+  padding:12px 14px !important;
+  gap:10px !important;
+  justify-content:center !important;
+  border-bottom:4px solid var(--v3-gold) !important;
+}
+
+.top-nav a,
+.top-nav button{
+  color:#fff !important;
+  font-size:.86rem !important;
+  font-weight:700 !important;
+  padding:9px 15px !important;
+  background:rgba(255,255,255,.10) !important;
+  border:1px solid rgba(255,255,255,.22) !important;
+  border-radius:999px !important;
+  line-height:1 !important;
+}
+
+.top-nav a:hover,
+.top-nav button:hover{
+  background:#fff !important;
+  color:#003087 !important;
+}
+
+/* Bring Find Assignment forward as the true homepage */
+.container{
+  padding-top:18px !important;
+}
+
+#find{
+  padding:30px 0 34px !important;
+  border-top:0 !important;
+}
+
+#find h1{
+  font-size:clamp(2rem,4.2vw,3.25rem) !important;
+  font-weight:700 !important;
+  letter-spacing:-.045em !important;
+  margin:0 0 6px !important;
+  color:#1d1d1f !important;
+}
+
+#find .muted{
+  font-size:1.08rem !important;
+  color:#667085 !important;
+  margin-bottom:18px !important;
+}
+
+#find .search-row{
+  display:grid !important;
+  grid-template-columns:1fr auto !important;
+  gap:12px !important;
+  max-width:920px !important;
+}
+
+#find input{
+  min-height:54px !important;
+  border-radius:16px !important;
+  font-size:1.05rem !important;
+  padding:0 18px !important;
+  background:#f1f2f5 !important;
+}
+
+#find .btn{
+  min-height:54px !important;
+  padding:0 22px !important;
+  background:#eef2f8 !important;
+  color:#003087 !important;
+}
+
+/* Quiet general sections */
+.card{
+  padding:28px 0 !important;
+  border-top:1px solid #e5e7eb !important;
+}
+
+.card > h2,
+.section-title h2{
+  font-size:clamp(1.45rem,2.2vw,2rem) !important;
+  color:#1d1d1f !important;
+  margin-bottom:12px !important;
+}
+
+/* Assignment cards remain useful and clear */
+.assignment-card{
+  border-radius:18px !important;
+  border:1px solid #e5e7eb !important;
+  background:#fff !important;
+  padding:18px !important;
+}
+
+.assignment-card .btn{
+  font-size:.88rem !important;
+  font-weight:650 !important;
+}
+
+/* Point coaches: date and name matter, contact details secondary.
+   Keep images, but make the cards colored and compact. */
+#point-coaches-section{
+  padding-top:34px !important;
+}
+
+#point-coaches-section #pointCoachDirectory{
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr)) !important;
+  gap:12px !important;
+}
+
+.point-coach-feature{
+  display:block !important;
+  min-height:0 !important;
+  background:#003087 !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:18px !important;
+  padding:14px !important;
+  text-align:left !important;
+  box-shadow:0 8px 20px rgba(0,48,135,.13) !important;
+  position:relative;
+  overflow:hidden;
+}
+
+.point-coach-feature:before{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:4px;
+  background:#f2c230;
+}
+
+.coach-headshot{
+  display:block !important;
+  width:74px !important;
+  height:86px !important;
+  object-fit:cover !important;
+  border-radius:10px !important;
+  border:2px solid rgba(255,255,255,.75) !important;
+  box-shadow:none !important;
+  margin:0 0 10px !important;
+}
+
+.point-day{
+  color:#f2c230 !important;
+  font-size:1rem !important;
+  font-weight:750 !important;
+  line-height:1.15 !important;
+  margin:0 0 5px !important;
+  letter-spacing:-.02em !important;
+  text-transform:none !important;
+  white-space:normal !important;
+}
+
+.point-coach-feature strong{
+  color:#fff !important;
+  font-size:.96rem !important;
+  font-weight:650 !important;
+  line-height:1.15 !important;
+  margin:0 0 5px !important;
+}
+
+.point-coach-feature a{
+  display:block !important;
+  color:rgba(255,255,255,.82) !important;
+  font-size:.78rem !important;
+  line-height:1.25 !important;
+  font-weight:500 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  max-width:100% !important;
+}
+
+/* Head coaches: one combined accordion line */
+#head-coaches-section{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  padding:22px 0 !important;
+}
+
+#head-coaches-section h2{
+  margin:0 !important;
+  font-size:1.28rem !important;
+}
+
+#head-coaches-section .head-coach-toggle-btn{
+  margin:0 !important;
+  min-height:36px !important;
+  padding:8px 14px !important;
+  background:#f5f5f7 !important;
+  color:#326abe !important;
+}
+
+#head-coaches-section #sportCoachDirectory{
+  flex:0 0 100% !important;
+  margin-top:12px !important;
+}
+
+/* Pass Splitter: standalone feature / ticket booth */
+.pass-card{
+  margin:18px 0 26px !important;
+  padding:30px !important;
+  border:0 !important;
+  border-radius:28px !important;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(242,194,48,.42), transparent 25%),
+    linear-gradient(135deg,#fff8db 0%,#fffdf5 62%,#f8f1cc 100%) !important;
+  box-shadow:0 16px 40px rgba(184,135,22,.16) !important;
+}
+
+.pass-card .section-title h2{
+  font-size:clamp(1.8rem,3vw,2.65rem) !important;
+  letter-spacing:-.05em !important;
+}
+
+.pass-card .section-title h2:before{
+  content:"🎟️ " !important;
+}
+
+.pass-card .muted{
+  font-size:1rem !important;
+  color:#6b5a20 !important;
+}
+
+.pass-note{
+  display:inline-block !important;
+  background:rgba(255,255,255,.72) !important;
+  color:#6f4f00 !important;
+  border:1px solid rgba(242,194,48,.65) !important;
+  border-left:0 !important;
+  border-radius:999px !important;
+  padding:9px 14px !important;
+  font-size:.9rem !important;
+}
+
+.pass-form{
+  background:rgba(255,255,255,.82) !important;
+  border-radius:22px !important;
+  padding:18px !important;
+  box-shadow:inset 0 0 0 1px rgba(242,194,48,.22) !important;
+}
+
+/* Slot Swap: separate feature panel, less warning, more explanation */
+.trade-card{
+  margin:16px 0 28px !important;
+  padding:30px !important;
+  border:0 !important;
+  border-radius:28px !important;
+  background:
+    radial-gradient(circle at 90% 12%, rgba(50,106,190,.16), transparent 24%),
+    linear-gradient(135deg,#f8fbff 0%,#fff 70%) !important;
+  box-shadow:0 16px 40px rgba(0,48,135,.10) !important;
+}
+
+.trade-card .section-title h2{
+  font-size:clamp(1.75rem,3vw,2.45rem) !important;
+  letter-spacing:-.045em !important;
+}
+
+.trade-card .section-title h2:before{
+  content:"↔️ " !important;
+}
+
+.trade-warning{
+  background:#eef4ff !important;
+  color:#326abe !important;
+  border-radius:999px !important;
+  font-size:.9rem !important;
+  padding:8px 13px !important;
+}
+
+/* Need help integrated into professional footer area */
+.last-resort-contact{
+  max-width:100% !important;
+  margin:0 !important;
+  padding:28px max(18px,calc((100vw - 1120px) / 2 + 18px)) !important;
+  border-top:1px solid #e5e7eb !important;
+  background:#fff !important;
+}
+
+.last-resort-contact img{
+  width:52px !important;
+  height:52px !important;
+  border-radius:12px !important;
+  object-fit:cover !important;
+}
+
+.last-resort-contact strong{
+  font-size:1.1rem !important;
+}
+
+.last-resort-contact span{
+  display:block;
+  margin-top:2px;
+  font-size:.94rem !important;
+  color:#667085 !important;
+}
+
+footer{
+  background:#f5f5f7 !important;
+  color:#667085 !important;
+  border-top:1px solid #e5e7eb !important;
+}
+
+/* Mobile refinements */
+@media(max-width:900px){
+  .hero-image img{
+    width:100% !important;
+    max-height:260px !important;
+  }
+
+  .top-nav{
+    gap:6px !important;
+  }
+
+  .top-nav a,
+  .top-nav button{
+    font-size:.8rem !important;
+    padding:8px 11px !important;
+  }
+
+  #find{
+    padding-top:22px !important;
+  }
+
+  #find .search-row{
+    grid-template-columns:1fr !important;
+  }
+
+  #point-coaches-section #pointCoachDirectory{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .point-coach-feature{
+    padding:12px !important;
+  }
+
+  .coach-headshot{
+    width:62px !important;
+    height:72px !important;
+  }
+
+  .point-day{
+    font-size:.92rem !important;
+  }
+
+  .point-coach-feature strong{
+    font-size:.9rem !important;
+  }
+
+  .point-coach-feature a{
+    font-size:.72rem !important;
+  }
+
+  .pass-card,
+  .trade-card{
+    padding:22px 16px !important;
+    border-radius:22px !important;
+  }
+}
+
+@media(max-width:520px){
+  #point-coaches-section #pointCoachDirectory{
+    grid-template-columns:1fr !important;
+  }
+
+  .point-coach-feature{
+    display:grid !important;
+    grid-template-columns:64px 1fr !important;
+    gap:12px !important;
+  }
+
+  .coach-headshot{
+    margin:0 !important;
+  }
+}
+
