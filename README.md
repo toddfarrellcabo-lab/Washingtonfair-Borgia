@@ -114,3 +114,13 @@ For shared confirmations/trades/emails, connect it to Microsoft Lists + Power Au
 - Navigation now points to Point Coaches instead of Coach Directory.
 - Sport Coach is optional when confirming an assignment.
 - Changed files: index.html, js/app.js, css/style.css, README.md.
+
+
+## v2.18 notes
+- Repaired wrong CSS being included in the site package.
+- Restored Borgia blue/gold Point Coach cards.
+- Kept hero image visible on mobile.
+- Point Coaches are visible.
+- Coaches section is collapsed by default with simple Show/Hide button.
+- Sport Coach remains optional.
+- Rebuilt index structure so Find, Point Coaches, Coaches, Trade Board, and Pass Splitter are all inside the main container.

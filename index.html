@@ -13,9 +13,10 @@
 
   <nav class="top-nav">
     <a href="#find">Find Assignment</a>
+    <a href="#point-coaches-section">Point Coaches</a>
+    <a href="#head-coaches-section">Coaches</a>
     <a href="#trade-board">Trade Board</a>
     <a href="#pass-splitter">Pass Splitter</a>
-    <a href="#point-coaches-section">Point Coaches</a>
     <button id="coordinatorToggle" type="button">Coordinator View</button>
   </nav>
 
@@ -61,14 +62,63 @@
       <div id="awaitingList" class="compact-list"></div>
     </section>
 
-   <section id="point-coaches-section" class="card">
+    <section id="point-coaches-section" class="card">
       <h2>Point Coaches</h2>
       <div id="pointCoachDirectory"></div>
     </section>
 
-    <section id="head-coaches-section" class="card">
+    <section id="head-coaches-section" class="card collapsed-section">
       <h2>Coaches</h2>
       <div id="sportCoachDirectory"></div>
+    </section>
+
+    <section id="trade-board" class="card trade-card">
+      <div class="section-title">
+        <h2>Trade Board</h2>
+        <span id="tradeCount" class="pill">0</span>
+      </div>
+      <p class="trade-warning">Trade requests are not approved until confirmed. You remain responsible for your assigned shift.</p>
+      <div id="tradeList" class="trade-list"></div>
+    </section>
+
+    <section id="pass-splitter" class="card pass-card">
+      <div class="section-title">
+        <h2>Pass Splitter</h2>
+        <span id="passCount" class="pill">0</span>
+      </div>
+      <p class="muted">Fair admission can be expensive. Use this parent-to-parent tool to find another volunteer family whose shift is on a different day or opposite time block.</p>
+      <p class="pass-note">Pass sharing is coordinated directly between families.</p>
+
+      <div class="pass-form">
+        <div>
+          <label class="label" for="passLookupInput">Find Your Assignment</label>
+          <input id="passLookupInput" placeholder="Search name, email, phone, or slot number">
+          <input id="passSlotInput" type="hidden">
+          <div id="passLookupResults" class="pass-lookup-results"></div>
+        </div>
+        <div>
+          <label class="label" for="passMode">I am...</label>
+          <select id="passMode">
+            <option value="looking">Looking for someone to split with</option>
+            <option value="have">I have a pass and can share</option>
+            <option value="found">Partner found</option>
+          </select>
+        </div>
+        <div class="span-2">
+          <label class="label" for="passNote">Notes</label>
+          <textarea id="passNote" placeholder="Example: I only need the pass Sunday evening. Happy to split with someone earlier in the week."></textarea>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="findPassMatches" class="btn btn-gold" type="button">Find Compatible Families</button>
+        <button id="postPassRequest" class="btn btn-navy" type="button">Post Pass Split Request</button>
+      </div>
+
+      <div id="passMatches" class="pass-matches"></div>
+
+      <h3>Pass Splitter Board</h3>
+      <div id="passBoard" class="pass-board"></div>
     </section>
   </main>
 

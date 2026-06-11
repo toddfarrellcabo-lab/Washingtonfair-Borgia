@@ -1052,34 +1052,29 @@ function setupMobileCollapsers(){
     ){
       card.classList.toggle("mobile-open");
     }
-
-    const toggle = e.target.closest("[data-toggle-section]");
-    if (toggle){
-      const target = document.querySelector(toggle.dataset.toggleSection);
-      if (target){
-        target.classList.toggle("collapsed-section");
-        toggle.textContent = target.classList.contains("collapsed-section")
-          ? "Show Coaches"
-          : "Hide Coaches";
-      }
-    }
   });
 
-  const headCoachSection = document.querySelector("#head-coaches-section");
-  if (headCoachSection && !headCoachSection.querySelector(".head-coach-toggle-btn")){
-    headCoachSection.classList.add("collapsed-section");
+  const coachSection = document.querySelector("#head-coaches-section");
+  if (coachSection && !coachSection.querySelector(".head-coach-toggle-btn")){
+    coachSection.classList.add("collapsed-section");
 
     const btn = document.createElement("button");
     btn.className = "btn section-toggle-btn head-coach-toggle-btn";
     btn.type = "button";
-    btn.dataset.toggleSection = "#head-coaches-section";
     btn.textContent = "Show";
 
-    const heading = headCoachSection.querySelector("h2");
+    btn.addEventListener("click", function(){
+      coachSection.classList.toggle("collapsed-section");
+      btn.textContent = coachSection.classList.contains("collapsed-section")
+        ? "Show"
+        : "Hide";
+    });
+
+    const heading = coachSection.querySelector("h2");
     if (heading){
       heading.insertAdjacentElement("afterend", btn);
     } else {
-      headCoachSection.prepend(btn);
+      coachSection.prepend(btn);
     }
   }
 }
